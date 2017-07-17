@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { BluetoothSerial } from "@ionic-native/bluetooth-serial";
 import { Observable } from "rxjs";
-import {BluetoothDevice} from "../types/bluetooth-device.type";
+import { BluetoothDevice } from "../types/bluetooth-device.type";
 
 @Injectable()
 export class BluetoothService{
@@ -23,7 +23,7 @@ export class BluetoothService{
     });
   }
 
-  public connectDevice(device: BluetoothDevice) : Observable<any> {
+  public connectDevice(device: BluetoothDevice): Observable<any> {
     return this.bluetoothSerial.connectInsecure(device.address);
   }
 

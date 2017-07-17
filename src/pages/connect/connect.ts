@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {AlertController, NavController} from 'ionic-angular';
+import { Component, OnInit } from '@angular/core';
+import { AlertController, NavController } from 'ionic-angular';
 import { BluetoothService } from "../../services/bluetooth.service";
-import {BluetoothDevice} from "../../types/bluetooth-device.type";
-import {TabsControllerPage} from "../tabs-controller/tabs-controller";
+import { BluetoothDevice } from "../../types/bluetooth-device.type";
+import { TabsControllerPage } from "../tabs-controller/tabs-controller";
 
 @Component({
   selector: 'page-connect',
@@ -38,11 +38,7 @@ export class ConnectPage implements OnInit {
   ngOnInit(): void {
     this.bluetoothService.getPairedDevices()
       .then((devices) => {
-        console.log(devices);
         this.pairedDevices = devices;
-      })
-      .catch((error) => {
-        console.log(error);
       });
   }
 
