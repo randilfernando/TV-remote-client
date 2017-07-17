@@ -13,8 +13,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { BluetoothService } from "../services/bluetooth.service";
 import { BluetoothSerial } from "@ionic-native/bluetooth-serial";
 import { NativeStorage } from "@ionic-native/native-storage";
-import { RemoteInMemoryService } from "../services/remote-inmemory.service";
-import { RemotePersistantService } from "../services/remote-persistant.service";
+import { RemoteService } from "../services/remote.service";
+import { LearnAgent } from "../services/learn.agent";
 
 @NgModule({
   declarations: [
@@ -43,8 +43,8 @@ import { RemotePersistantService } from "../services/remote-persistant.service";
     BluetoothSerial,
     NativeStorage,
     BluetoothService,
-    RemoteInMemoryService,
-    RemotePersistantService
+    RemoteService,
+    LearnAgent
   ]
 })
 export class AppModule {}

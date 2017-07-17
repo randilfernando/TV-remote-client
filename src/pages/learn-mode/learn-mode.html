@@ -6,10 +6,10 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding id="page3">
-  <h3 *ngIf="selectedRemote" id="learnMode-heading1" style="color:#000000;">
+  <h3 *ngIf="selectedRemote" style="color:#000000;">
     {{selectedRemote?.name}}
   </h3>
-  <h3 *ngIf="!selectedRemote" id="learnMode-heading1" style="color:#000000;">
+  <h3 *ngIf="!selectedRemote" style="color:#000000;">
     Choose remote
   </h3>
   <ion-list>
@@ -19,17 +19,17 @@
     </ion-item>
     <ion-item *ngIf="!isLearning">
       <ion-icon name="checkmark-circle" item-start></ion-icon>
-      Button Recerded
+      Signal received
     </ion-item>
     <ion-item>
-      <ion-input type="text" placeholder="Enter command name" [disabled]="isLearning"></ion-input>
+      <ion-input type="text" placeholder="Enter command name" [(ngModel)]="learnedSignal.name" [disabled]="isLearning"></ion-input>
     </ion-item>
   </ion-list>
   <div class="spacer" style="height:200px;" id="learnMode-spacer3"></div>
-  <button [disabled]="isLearning" ion-button color="stable" block>
+  <button [disabled]="isLearning" ion-button color="stable" block (click)="learnSignal()">
     Train Again
   </button>
-  <button [disabled]="isLearning" ion-button color="positive" block>
+  <button [disabled]="isLearning" ion-button color="positive" block (click)="addSignal()">
     OK
   </button>
 </ion-content>

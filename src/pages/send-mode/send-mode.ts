@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { Remote } from "../../types/remote.type";
-import { RemoteInMemoryService } from "../../services/remote-inmemory.service";
+import { RemoteService } from "../../services/remote.service";
+import {BluetoothService} from "../../services/bluetooth.service";
 
 @Component({
   selector: 'page-send-mode',
@@ -13,11 +14,12 @@ export class SendModePage implements OnInit {
 
   private selectedRemote: Remote;
 
-  private addingRemote: string = '';
+  private newRemote: string = '';
 
   // this tells the tabs component which Pages
   // should be each tab's root Page
-  constructor(public navCtrl: NavController, private remoteService: RemoteInMemoryService, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, private remoteService: RemoteService, private alertCtrl: AlertController,
+              private bluetoothService: BluetoothService) {
   }
 
   deviceAlert(message) {
@@ -30,19 +32,19 @@ export class SendModePage implements OnInit {
   }
 
   canAddRemote(): boolean {
-    return (this.addingRemote != '');
+    return (this.newRemote != '');
   }
 
   addRemote() {
     if (this.canAddRemote()) {
       let remote: Remote = {
-        name: this.addingRemote,
+        name: this.newRemote,
         signals: []
       };
       this.remoteService.addRemote(remote)
         .then(() => {
           this.deviceAlert(`Device: ${remote.name} added.`);
-          this.addingRemote = '';
+          this.newRemote = '';
         })
         .catch((error) => {
           console.log(error)
@@ -50,8 +52,8 @@ export class SendModePage implements OnInit {
     }
   }
 
-  chooseRemote(remote: Remote) {
-    this.selectedRemote = remote;
+  chooseRemote() {
+    this.remoteService.setCurrent(this.selectedRemote);
   }
 
   getAllRemotes() {
@@ -65,30 +67,12 @@ export class SendModePage implements OnInit {
   }
 
   sendSignal(signal: string) {
-    //this.bluetoothService.sendData(signal);
+    this.bluetoothService.sendData(signal);
   }
 
   ngOnInit() {
-    //this.bluetoothService.toggleSendMode();
+    this.bluetoothService.toggleSendMode();
     this.getAllRemotes();
-    // this.remoteNames = ['NEC', 'SONY', 'HC5', 'HC6'];
-    // this.selectedRemote = {
-    //   name: 'NEC',
-    //   signals: [
-    //     {
-    //       name: 'Vol_Up',
-    //       code: '001'
-    //     },
-    //     {
-    //       name: 'Vol_Down',
-    //       code: '010'
-    //     },
-    //     {
-    //       name: 'Power',
-    //       code: '100'
-    //     }
-    //   ]
-    // }
   }
 
 }

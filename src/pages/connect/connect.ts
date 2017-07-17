@@ -22,8 +22,9 @@ export class ConnectPage implements OnInit {
   connectDevice(device: BluetoothDevice){
     this.bluetoothService.connectDevice(device).subscribe(() => {
       this.deviceConnectedAlert(device.name);
+      this.navCtrl.push(this.nextPage);
     });
-    this.navCtrl.push(this.nextPage);
+    this.navCtrl.push(this.nextPage); //later comment
   }
 
   deviceConnectedAlert(name) {
