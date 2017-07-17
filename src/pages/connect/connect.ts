@@ -44,8 +44,6 @@ export class ConnectPage implements OnInit {
       .catch((error) => {
         console.log(error);
       });
-    this.pairedDevices = [];
-    this.pairedDevices.push({name: 'new', address: 'test'});
   }
 
 }
