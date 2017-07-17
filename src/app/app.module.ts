@@ -10,9 +10,11 @@ import { ConnectPage } from '../pages/connect/connect';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import {BluetoothService} from "../services/bluetooth.service";
-import {RemoteService} from "../services/remote.service";
-import {BluetoothSerial} from "@ionic-native/bluetooth-serial";
+import { BluetoothService } from "../services/bluetooth.service";
+import { BluetoothSerial } from "@ionic-native/bluetooth-serial";
+import { NativeStorage } from "@ionic-native/native-storage";
+import { RemoteInMemoryService } from "../services/remote-inmemory.service";
+import { RemotePersistantService } from "../services/remote-persistant.service";
 
 @NgModule({
   declarations: [
@@ -39,8 +41,10 @@ import {BluetoothSerial} from "@ionic-native/bluetooth-serial";
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BluetoothSerial,
+    NativeStorage,
     BluetoothService,
-    RemoteService
+    RemoteInMemoryService,
+    RemotePersistantService
   ]
 })
 export class AppModule {}

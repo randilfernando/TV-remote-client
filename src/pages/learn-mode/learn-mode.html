@@ -6,27 +6,30 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding id="page3">
-  <h3 id="learnMode-heading1" style="color:#000000;">
-    NEC Remote
+  <h3 *ngIf="selectedRemote" id="learnMode-heading1" style="color:#000000;">
+    {{selectedRemote?.name}}
   </h3>
-  <form id="learnMode-form3">
-    <ion-item id="learnMode-checkbox1">
-      <ion-label>
-        Press Button
-      </ion-label>
-      <ion-checkbox></ion-checkbox>
+  <h3 *ngIf="!selectedRemote" id="learnMode-heading1" style="color:#000000;">
+    Choose remote
+  </h3>
+  <ion-list>
+    <ion-item *ngIf="isLearning">
+      <ion-icon name="alert" item-start></ion-icon>
+      Press button
     </ion-item>
-    <ion-item id="learnMode-input4">
-      <ion-label></ion-label>
-      <ion-input type="text" placeholder="Enter command name"></ion-input>
+    <ion-item *ngIf="!isLearning">
+      <ion-icon name="checkmark-circle" item-start></ion-icon>
+      Button Recerded
     </ion-item>
-  </form>
-  <div class="spacer" style="height:100px;" id="learnMode-spacer3"></div>
-  <div class="spacer" style="height:100px;" id="learnMode-spacer6"></div>
-  <button id="learnMode-button7" ion-button color="stable" block>
+    <ion-item>
+      <ion-input type="text" placeholder="Enter command name" [disabled]="isLearning"></ion-input>
+    </ion-item>
+  </ion-list>
+  <div class="spacer" style="height:200px;" id="learnMode-spacer3"></div>
+  <button [disabled]="isLearning" ion-button color="stable" block>
     Train Again
   </button>
-  <button id="learnMode-button4" ion-button color="positive" block>
+  <button [disabled]="isLearning" ion-button color="positive" block>
     OK
   </button>
 </ion-content>
