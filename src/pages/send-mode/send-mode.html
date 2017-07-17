@@ -9,7 +9,7 @@
   <ion-list id="sendMode-menu">
     <ion-item>
       <ion-label>Choose remote</ion-label>
-      <ion-select [(ngModel)]="selectedRemote" (change)="chooseRemote()">
+      <ion-select [(ngModel)]="selectedRemote" (ionChange)="chooseRemote()">
         <ion-option *ngFor="let remote of remotes" [value]="remote">{{remote.name}}</ion-option>
       </ion-select>
     </ion-item>
