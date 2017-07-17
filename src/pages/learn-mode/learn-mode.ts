@@ -25,21 +25,21 @@ export class LearnModePage implements OnInit {
   ngOnInit(): void {
     this.selectedRemote = this.remoteService.getCurrent();
     this.isLearning = true;
-    this.bluetoothService.toggleLearnMode()
-      .then(() => {
-        this.learnSignal();
-      });
+    this.learnSignal();
   }
 
   learnSignal(){
-    this.isLearning = true;
-    if (this.selectedRemote){
-      this.learnAgent.detectCode()
-        .then((signal) => {
-          this.learnedSignal.code = signal.code;
-          this.isLearning = false;
-        });
-    }
+    this.bluetoothService.toggleLearnMode()
+      .then(() => {
+        this.isLearning = true;
+        if (this.selectedRemote){
+          this.learnAgent.detectCode()
+            .then((signal) => {
+              this.learnedSignal.code = signal.code;
+              this.isLearning = false;
+            });
+        }
+      });
   }
 
   addSignal(){

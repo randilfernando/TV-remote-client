@@ -24,7 +24,7 @@ export class ConnectPage implements OnInit {
       this.deviceConnectedAlert(device.name);
       this.navCtrl.push(this.nextPage);
     });
-    this.navCtrl.push(this.nextPage); //later comment
+    //this.navCtrl.push(this.nextPage); //later comment
   }
 
   deviceConnectedAlert(name) {

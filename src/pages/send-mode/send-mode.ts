@@ -54,6 +54,7 @@ export class SendModePage implements OnInit {
 
   chooseRemote() {
     this.remoteService.setCurrent(this.selectedRemote);
+    this.bluetoothService.toggleSendMode();
   }
 
   getAllRemotes() {

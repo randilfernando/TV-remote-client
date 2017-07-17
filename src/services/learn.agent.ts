@@ -20,15 +20,17 @@ export class LearnAgent {
           count ++;
           signal = signal.replace("\n", "");
 
-          if (!received.hasOwnProperty(signal)){
-            received[signal] = 1;
-          }else{
-            received[signal] = received[signal] + 1;
-          }
+          if(signal != '-1'){
+            if (!received.hasOwnProperty(signal)){
+              received[signal] = 1;
+            }else{
+              received[signal] = received[signal] + 1;
+            }
 
-          if (max < received[signal]){
-            max = received[signal];
-            maximumReceived = signal;
+            if (max < received[signal]){
+              max = received[signal];
+              maximumReceived = signal;
+            }
           }
 
           if (count >= 10){
