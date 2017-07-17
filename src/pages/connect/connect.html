@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Connect
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding id="page6">
+  <button *ngFor="let device of pairedDevices" [id]="device.address" ion-button color="positive" block
+    (click)="connectDevice(device)">
+    {{device.name}}
+  </button>
+</ion-content>

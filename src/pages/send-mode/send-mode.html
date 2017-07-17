@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Send Mode
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding id="page2">
+  <ion-list id="sendMode-menu">
+    <ion-item id="sendMode-select1">
+      <ion-label>
+        Choose Remote
+      </ion-label>
+      <ion-select name=""></ion-select>
+    </ion-item>
+    <ion-item id="sendMode-input5">
+      <ion-label></ion-label>
+      <ion-input type="text" placeholder="or add new remote"></ion-input>
+    </ion-item>
+    <button id="sendMode-button9" ion-button block>
+      Add Remote
+    </button>
+  </ion-list>
+  <button *ngFor="let signal of selectedRemote?.signals" id="sendMode-button1" ion-button color="light" block
+    (click)="sendSignal(signal.code)">
+    {{signal.name}}
+  </button>
+</ion-content>

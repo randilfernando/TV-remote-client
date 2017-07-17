@@ -1,16 +1,26 @@
+import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ErrorHandler, NgModule } from '@angular/core';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { StatusBar } from '@ionic-native/status-bar';
-
+import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { SendModePage } from '../pages/send-mode/send-mode';
+import { LearnModePage } from '../pages/learn-mode/learn-mode';
+import { TabsControllerPage } from '../pages/tabs-controller/tabs-controller';
+import { ConnectPage } from '../pages/connect/connect';
+
+
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import {BluetoothService} from "../services/bluetooth.service";
+import {RemoteService} from "../services/remote.service";
+import {BluetoothSerial} from "@ionic-native/bluetooth-serial";
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    SendModePage,
+    LearnModePage,
+    TabsControllerPage,
+    ConnectPage
   ],
   imports: [
     BrowserModule,
@@ -19,12 +29,18 @@ import { HomePage } from '../pages/home/home';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    SendModePage,
+    LearnModePage,
+    TabsControllerPage,
+    ConnectPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    BluetoothSerial,
+    BluetoothService,
+    RemoteService
   ]
 })
 export class AppModule {}

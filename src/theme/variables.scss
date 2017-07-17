@@ -12,7 +12,7 @@ $font-path: "../assets/fonts";
 $app-direction: ltr;
 
 
-@import "ionic.globals";
+//@import "ionic.globals";
 
 
 // Shared Variables
@@ -41,6 +41,9 @@ $colors: (
   dark:       #222
 );
 
+button{
+  height: 50px;
+}
 
 // App iOS Variables
 // --------------------------------------------------
