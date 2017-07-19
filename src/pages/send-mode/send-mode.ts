@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Remote } from "../../types/remote.type";
 import { RemoteService } from "../../services/remote.service";
@@ -20,7 +20,7 @@ export class SendModePage {
   // this tells the tabs component which Pages
   // should be each tab's root Page
   constructor(public navCtrl: NavController, private remoteService: RemoteService, private remoteMessageService: RemoteMessageService,
-    private bluetoothService: BluetoothService) {
+    private bluetoothService: BluetoothService, private changeDetectorRef: ChangeDetectorRef) {
   }
 
   canAddRemote(): boolean {
@@ -41,6 +41,7 @@ export class SendModePage {
         .catch((error) => {
           console.log(error)
         });
+      this.changeDetectorRef.detectChanges();
     }
   }
 
@@ -78,6 +79,7 @@ export class SendModePage {
         console.log(error);
       });
     this.getAllRemotes();
+    this.changeDetectorRef.detectChanges();
   }
 
 }

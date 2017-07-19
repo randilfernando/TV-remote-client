@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {ChangeDetectorRef, Component} from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { Remote } from "../../types/remote.type";
 import { RemoteService } from "../../services/remote.service";
@@ -20,7 +20,7 @@ export class LearnModePage {
   // this tells the tabs component which Pages
   // should be each tab's root Page
   constructor(public navCtrl: NavController, private remoteService: RemoteService, private bluetoothService: BluetoothService,
-    private learnAgent: LearnAgent, private remoteMessageService: RemoteMessageService) {
+    private learnAgent: LearnAgent, private remoteMessageService: RemoteMessageService, private changeDetectorRef: ChangeDetectorRef) {
   }
 
   learnSignal() {
@@ -33,6 +33,7 @@ export class LearnModePage {
             .then((signal) => {
               this.learnedSignal.code = signal.code;
               this.isLearning = false;
+              this.remoteMessageService.displayAlert('Signal received.');
             })
             .catch((error) => {
               console.log(error);
@@ -41,6 +42,7 @@ export class LearnModePage {
           this.remoteMessageService.displayAlert('Please select remote.')
         }
       });
+    this.changeDetectorRef.detectChanges();
   }
 
   clearLearnedSignal() {
