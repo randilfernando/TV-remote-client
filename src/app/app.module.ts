@@ -15,6 +15,7 @@ import { BluetoothSerial } from "@ionic-native/bluetooth-serial";
 import { NativeStorage } from "@ionic-native/native-storage";
 import { RemoteService } from "../services/remote.service";
 import { LearnAgent } from "../services/learn.agent";
+import { RemoteMessageService } from "../services/remote-message.service";
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { LearnAgent } from "../services/learn.agent";
     NativeStorage,
     BluetoothService,
     RemoteService,
+    RemoteMessageService,
     LearnAgent
   ]
 })

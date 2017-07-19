@@ -6,6 +6,9 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding id="page6">
+  <button ion-button color="light" block (click)="refresh()">
+    Refresh
+  </button>
   <button *ngFor="let device of pairedDevices" [id]="device.address" ion-button color="positive" block
     (click)="connectDevice(device)">
     {{device.name}}

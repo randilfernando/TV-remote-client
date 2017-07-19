@@ -27,7 +27,9 @@
         "@ionic-native/status-bar": "3.12.1",
         "@ionic/storage": "2.0.1",
         "cordova-android": "^6.2.3",
+        "cordova-plugin-ble-central": "^1.1.4",
         "cordova-plugin-bluetooth-serial": "^0.4.7",
+        "cordova-plugin-compat": "^1.0.0",
         "cordova-plugin-console": "^1.0.5",
         "cordova-plugin-device": "^1.1.4",
         "cordova-plugin-nativestorage": "^2.2.2",
@@ -57,7 +59,8 @@
             "cordova-plugin-splashscreen": {},
             "cordova-plugin-statusbar": {},
             "cordova-plugin-whitelist": {},
-            "ionic-plugin-keyboard": {}
+            "ionic-plugin-keyboard": {},
+            "cordova-plugin-ble-central": {}
         },
         "platforms": [
             "android"

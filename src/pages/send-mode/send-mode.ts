@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { Component } from '@angular/core';
+import { NavController } from 'ionic-angular';
 import { Remote } from "../../types/remote.type";
 import { RemoteService } from "../../services/remote.service";
-import {BluetoothService} from "../../services/bluetooth.service";
+import { BluetoothService } from "../../services/bluetooth.service";
+import { RemoteMessageService } from "../../services/remote-message.service";
 
 @Component({
   selector: 'page-send-mode',
   templateUrl: 'send-mode.html'
 })
-export class SendModePage implements OnInit {
+export class SendModePage {
 
   private remotes: Remote[];
 
@@ -18,17 +19,8 @@ export class SendModePage implements OnInit {
 
   // this tells the tabs component which Pages
   // should be each tab's root Page
-  constructor(public navCtrl: NavController, private remoteService: RemoteService, private alertCtrl: AlertController,
+  constructor(public navCtrl: NavController, private remoteService: RemoteService, private remoteMessageService: RemoteMessageService,
               private bluetoothService: BluetoothService) {
-  }
-
-  deviceAlert(message) {
-    let alert = this.alertCtrl.create({
-      title: 'Alert',
-      subTitle: message,
-      buttons: ['Dismiss']
-    });
-    alert.present();
   }
 
   canAddRemote(): boolean {
@@ -43,7 +35,7 @@ export class SendModePage implements OnInit {
       };
       this.remoteService.addRemote(remote)
         .then(() => {
-          this.deviceAlert(`Device: ${remote.name} added.`);
+          this.remoteMessageService.displayAlert(`Remote: ${remote.name} added.`);
           this.newRemote = '';
         })
         .catch((error) => {
@@ -71,7 +63,7 @@ export class SendModePage implements OnInit {
     this.bluetoothService.sendData(signal);
   }
 
-  ngOnInit() {
+  ionViewDidEnter(){
     this.bluetoothService.toggleSendMode();
     this.getAllRemotes();
   }

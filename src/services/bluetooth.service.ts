@@ -4,11 +4,11 @@ import { Observable } from "rxjs";
 import { BluetoothDevice } from "../types/bluetooth-device.type";
 
 @Injectable()
-export class BluetoothService{
+export class BluetoothService {
 
   private pairedDevices: BluetoothDevice[];
 
-  constructor(public bluetoothSerial: BluetoothSerial){}
+  constructor(public bluetoothSerial: BluetoothSerial) { }
 
   public getPairedDevices(): Promise<any> {
     return new Promise<any>((resolve, reject) => {
@@ -23,23 +23,31 @@ export class BluetoothService{
     });
   }
 
+  public isConnected(): Promise<any> {
+    return this.bluetoothSerial.isConnected();
+  }
+
+  public checkBluetooth(): Promise<any> {
+    return this.bluetoothSerial.isEnabled();
+  }
+
   public connectDevice(device: BluetoothDevice): Observable<any> {
     return this.bluetoothSerial.connectInsecure(device.address);
   }
 
-  public toggleSendMode(): Promise<any>{
+  public toggleSendMode(): Promise<any> {
     return this.bluetoothSerial.write("SEND");
   }
 
-  public toggleLearnMode(): Promise<any>{
+  public toggleLearnMode(): Promise<any> {
     return this.bluetoothSerial.write("LEARN");
   }
 
-  public sendData(data: String): Promise<any>{
+  public sendData(data: string): Promise<any> {
     return this.bluetoothSerial.write(data);
   }
 
-  public subscribeData(delimiter: string): Observable<any>{
+  public subscribeData(delimiter: string): Observable<any> {
     return this.bluetoothSerial.subscribe(delimiter);
   }
 }

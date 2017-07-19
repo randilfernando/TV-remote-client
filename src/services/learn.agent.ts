@@ -8,34 +8,23 @@ export class LearnAgent {
   constructor(private bluetoothService: BluetoothService) {
   }
 
-  public detectCode(): Promise<any>{
+  public detectCode(): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       let received = {};
-      let count = 10;
-      let maximumReceived: string;
-      let max: number = 0;
 
-      let subscribe = this.bluetoothService.subscribeData('\n')
+      let subscribe = this.bluetoothService.subscribeData("\n")
         .subscribe((signal) => {
-          count ++;
           signal = signal.replace("\n", "");
 
-          if(signal != '-1'){
-            if (!received.hasOwnProperty(signal)){
-              received[signal] = 1;
-            }else{
-              received[signal] = received[signal] + 1;
-            }
-
-            if (max < received[signal]){
-              max = received[signal];
-              maximumReceived = signal;
-            }
+          if (!received.hasOwnProperty(signal)) {
+            received[signal] = 1;
+          } else {
+            received[signal] = received[signal] + 1;
           }
 
-          if (count >= 10){
+          if (received[signal] == 3) {
             subscribe.unsubscribe();
-            let decodedSignal: Signal = {name: '', code: signal};
+            let decodedSignal: Signal = { name: '', code: signal };
             resolve(decodedSignal);
           }
         })
