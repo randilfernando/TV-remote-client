@@ -33,6 +33,9 @@ export class LearnModePage {
             .then((signal) => {
               this.learnedSignal.code = signal.code;
               this.isLearning = false;
+            })
+            .catch((error) => {
+              console.log(error);
             });
         } else {
           this.remoteMessageService.displayAlert('Please select remote.')

@@ -20,7 +20,7 @@ export class SendModePage {
   // this tells the tabs component which Pages
   // should be each tab's root Page
   constructor(public navCtrl: NavController, private remoteService: RemoteService, private remoteMessageService: RemoteMessageService,
-              private bluetoothService: BluetoothService) {
+    private bluetoothService: BluetoothService) {
   }
 
   canAddRemote(): boolean {
@@ -55,16 +55,28 @@ export class SendModePage {
         this.remotes = remotes;
       })
       .catch((error) => {
-        console.log(error)
+        console.log(error);
       });
   }
 
   sendSignal(signal: string) {
-    this.bluetoothService.sendData(signal);
+    this.bluetoothService.sendData(signal)
+      .then(() => {
+        console.log('sent');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
-  ionViewDidEnter(){
-    this.bluetoothService.toggleSendMode();
+  ionViewDidEnter() {
+    this.bluetoothService.toggleSendMode()
+      .then(() => {
+        console.log('send mode');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     this.getAllRemotes();
   }
 

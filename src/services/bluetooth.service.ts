@@ -32,7 +32,7 @@ export class BluetoothService {
   }
 
   public connectDevice(device: BluetoothDevice): Observable<any> {
-    return this.bluetoothSerial.connectInsecure(device.address);
+    return this.bluetoothSerial.connect(device.address);
   }
 
   public toggleSendMode(): Promise<any> {

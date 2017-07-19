@@ -21,12 +21,12 @@ export class ConnectPage {
   }
 
   connectDevice(device: BluetoothDevice) {
-    this.bluetoothService.connectDevice(device)
-      .subscribe(() => {
-        this.remoteMessageService.displayAlert(`${device.name} connected.`);
-        this.navCtrl.push(this.nextPage);
-      });
-    //this.navCtrl.push(this.nextPage); //later comment
+    // this.bluetoothService.connectDevice(device)
+    //   .subscribe(() => {
+    //     this.remoteMessageService.displayAlert(`${device.name} connected.`);
+    //     this.navCtrl.push(this.nextPage);
+    //   });
+    this.navCtrl.push(this.nextPage); //later comment
   }
 
   refresh() {
