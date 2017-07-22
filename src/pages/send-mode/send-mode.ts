@@ -70,6 +70,13 @@ export class SendModePage {
       });
   }
 
+  clearRemote(){
+    this.remoteService.clearRemote()
+      .then(() => {
+        console.log('remote cleared');
+      });
+  }
+
   ionViewDidEnter() {
     this.bluetoothService.toggleSendMode()
       .then(() => {

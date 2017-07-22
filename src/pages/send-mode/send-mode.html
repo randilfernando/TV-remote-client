@@ -19,6 +19,9 @@
     <button *ngIf="canAddRemote()" id="addRemoteButton" ion-button block (click)="addRemote()">
       Add Remote
     </button>
+    <button *ngIf="!canAddRemote()" id="clearRemoteButton" ion-button block color="light" (click)="clearRemote()">
+      Clear Remote
+    </button>
   </ion-list>
   <ion-list *ngIf="selectedRemote">
     <button *ngFor="let signal of selectedRemote?.signals" id="sendButton" ion-button block (click)="sendSignal(signal.code)">

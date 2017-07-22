@@ -42,7 +42,19 @@ export class RemoteService {
 
   public addSignal(signal: Signal): Promise<any> {
     return new Promise<boolean>((resolve, reject) => {
-      this.selectedRemote.signals.push(signal);
+      let notAdded = true;
+
+      for(let i = 0; i < this.selectedRemote.signals.length; i++){
+        if (this.selectedRemote.signals[i].name = signal.name){
+          this.selectedRemote.signals[i] = signal;
+          notAdded = false;
+        }
+      }
+
+      if (notAdded){
+        this.selectedRemote.signals.push(signal);
+      }
+
       this.nativeStorage.setItem('remotes', this.remotes)
         .then(() => {
           resolve();
@@ -51,6 +63,13 @@ export class RemoteService {
           reject(error);
         });
     })
+  }
+
+  public clearRemote(){
+    return new Promise<any>((resolve, reject) => {
+      this.selectedRemote.signals = [];
+      resolve();
+    });
   }
 
   public getCurrent(): Remote {
