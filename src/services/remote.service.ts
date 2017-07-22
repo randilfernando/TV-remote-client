@@ -45,7 +45,7 @@ export class RemoteService {
       let notAdded = true;
 
       for(let i = 0; i < this.selectedRemote.signals.length; i++){
-        if (this.selectedRemote.signals[i].name = signal.name){
+        if (this.selectedRemote.signals[i].name == signal.name){
           this.selectedRemote.signals[i] = signal;
           notAdded = false;
         }
